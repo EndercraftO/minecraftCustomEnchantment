@@ -1,0 +1,9 @@
+main: me.Endercraft_O.customEnchantment.Main
+name: CustomEnchantments
+version: 1.0
+author: Endercraft_O
+description: Allows for custom brewing recipes
+commands:
+    CustomEnchantment:
+      description: Used for the CustomEnchantment plugin's functions
+      usage: /CustomEnchantment [merge/get]
