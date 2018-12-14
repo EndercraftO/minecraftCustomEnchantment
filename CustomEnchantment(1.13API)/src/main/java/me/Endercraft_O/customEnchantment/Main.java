@@ -14,7 +14,7 @@ import me.Endercraft_O.customEnchantment.event.*;
 
 public class Main extends JavaPlugin{
 
-	public static Main plugin;
+	protected static Main plugin;
 	private static List<CustomEnchantment> enchants = new ArrayList<CustomEnchantment>();
 	private static BukkitTask secondLoop;
 	

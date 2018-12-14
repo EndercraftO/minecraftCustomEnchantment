@@ -164,12 +164,15 @@ public class EnchantmentListener implements Listener{
 	@EventHandler
 	public void AnvilAdd(PrepareAnvilEvent e)
 	{
+		//Bukkit.getPlayer("Endercraft").sendMessage("1");
 		if(e == null)
 			return;
 		ItemStack first = e.getInventory().getItem(0).clone();
 		ItemStack second = e.getInventory().getItem(1).clone();
 		if(first.getType().equals(second.getType()) || second.getType().equals(Material.ENCHANTED_BOOK) && ItemEnchanter.hasCustomEnchantments(second))
 		{
+			//Bukkit.getPlayer("Endercraft").sendMessage("2");
+			
 			List<CustomEnchantmentValue> secondEnc = ItemEnchanter.getAnvilableEnchantments(second);
 			
 			ItemEnchanter.safeEnchant(first, secondEnc);
