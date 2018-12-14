@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -65,23 +63,12 @@ public class ItemEnchanter {
 	}
 	public static void safeEnchant(ItemStack item, CustomEnchantmentValue cev)
 	{
-		//Bukkit.getPlayer("Endercraft").sendMessage("a");
-		String str = "";
-		for(String m : cev.getEnchantment().getApplicable())
-		{
-			str += m + " ";
-		}
-		Bukkit.getPlayer("Endercraft").sendMessage(str + " " + Material.DIAMOND_SWORD);
-		Bukkit.getPlayer("Endercraft").sendMessage(item.getType().name());
-		Bukkit.getPlayer("Endercraft").sendMessage((cev.getEnchantment().getApplicable() == null) +" "+ cev.getEnchantment().getApplicable().isEmpty() +" "+ cev.getEnchantment().getApplicable().contains(item.getType().name()) +" "+ !hasCustomEnchantments(item, cev.getEnchantment().getConflicts()));
 		if((cev.getEnchantment().getApplicable() == null || cev.getEnchantment().getApplicable().isEmpty() || cev.getEnchantment().getApplicable().contains(item.getType().name())) && !hasCustomEnchantments(item, cev.getEnchantment().getConflicts()))
 		{
-			Bukkit.getPlayer("Endercraft").sendMessage("b");
 			List<CustomEnchantmentValue> removeds = removeEnchantment(item, cev.getEnchantment());
 			CustomEnchantmentValue removed = (removeds == null || removeds.isEmpty()) ? null : removeds.get(0);
 			if(removed == null)
 			{
-				Bukkit.getPlayer("Endercraft").sendMessage("c");
 				forceEnchant(item, cev);
 			}
 			else

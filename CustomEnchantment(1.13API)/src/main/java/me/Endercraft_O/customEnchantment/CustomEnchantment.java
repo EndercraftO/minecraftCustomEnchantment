@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -18,46 +17,38 @@ public class CustomEnchantment {
 	private List<String> applicable = new ArrayList<String>();
 	private List<CustomEnchantment> conflicts = new ArrayList<CustomEnchantment>();
 	
-	public CustomEnchantment(String name, int max, Material... app)
+	public CustomEnchantment(String name, int max, String... app)
 	{
 		this.name = name;
 		this.max = (short) Math.abs(max);
 		if(app != null && app.length > 0)
-			for(Material m : app)
-				applicable.add(""+m.name());
-			//applicable = Arrays.asList(app);
+			applicable = Arrays.asList(app);
 	}
 	
-	public CustomEnchantment(String name, int max, Listener listener, Material... app)
+	public CustomEnchantment(String name, int max, Listener listener, String... app)
 	{
 		this(name, max);
 		this.listener = listener;
 		if(app != null && app.length > 0)
-			for(Material m : app)
-				applicable.add(""+m.name());
-			//applicable = Arrays.asList(app);
+			applicable = Arrays.asList(app);
 	}
 	
-	public CustomEnchantment(String name, int max, boolean anvil, Material... app)
+	public CustomEnchantment(String name, int max, boolean anvil, String... app)
 	{
 		this.name = name;
 		this.max = (short) Math.abs(max);
 		anvilable = anvil;
 		if(app != null && app.length > 0)
-			for(Material m : app)
-				applicable.add(""+m.name());
-			//applicable = Arrays.asList(app);
+			applicable = Arrays.asList(app);
 	}
 	
-	public CustomEnchantment(String name, int max, Listener listener, boolean anvil, Material... app)
+	public CustomEnchantment(String name, int max, Listener listener, boolean anvil, String... app)
 	{
 		this(name, max);
 		this.listener = listener;
 		anvilable = anvil;
 		if(app != null && app.length > 0)
-			for(Material m : app)
-				applicable.add(""+m.name());
-			//applicable = Arrays.asList(app);
+			applicable = Arrays.asList(app);
 	}
 	
 	public void addConflicts(CustomEnchantment... ces)
