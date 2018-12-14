@@ -16,7 +16,7 @@ public class CustomEnchantment {
 	private Listener listener = null;
 	private boolean anvilable;
 	private List<Material> applicable = null;
-	private List<CustomEnchantment> conflicts = null;
+	private List<CustomEnchantment> conflicts = new ArrayList<CustomEnchantment>();
 	
 	public CustomEnchantment(String name, int max, Material... app)
 	{
