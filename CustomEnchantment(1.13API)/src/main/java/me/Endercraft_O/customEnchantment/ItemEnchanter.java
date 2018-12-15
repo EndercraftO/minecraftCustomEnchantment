@@ -124,8 +124,10 @@ public class ItemEnchanter {
 	}
 	public static List<CustomEnchantmentValue> getEnchantments(ItemStack item)
 	{
-		List<String> lore = item.getItemMeta().getLore();
 		List<CustomEnchantmentValue> cevs = new ArrayList<CustomEnchantmentValue>();
+		if(item.getItemMeta() == null)
+			return cevs;
+		List<String> lore = item.getItemMeta().getLore();
 		int start = 0;
 		if(lore != null)
 			for(int i = 0; i < lore.size(); i++)
