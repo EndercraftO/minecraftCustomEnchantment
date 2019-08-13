@@ -21,13 +21,13 @@
   	<dependency>
   		<groupId>org.bukkit</groupId>
   		<artifactId>bukkit</artifactId>
-  		<version>1.13.2-R0.1-SNAPSHOT</version>
+  		<version>1.14.4-R0.1-SNAPSHOT</version>
   		<scope>provided</scope>
   	</dependency>
   </dependencies>
   
   <build>
-    <finalName>Custom Enchantments (1.13 API)</finalName>
+    <finalName>Custom Enchantments (1.14 API)</finalName>
     <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
       <resource>
