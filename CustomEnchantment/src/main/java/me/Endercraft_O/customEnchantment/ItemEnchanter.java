@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import org.bukkit.ChatColor;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -63,7 +64,7 @@ public class ItemEnchanter {
 	}
 	public static void safeEnchant(ItemStack item, CustomEnchantmentValue cev)
 	{
-		if((cev.getEnchantment().getApplicable() == null || cev.getEnchantment().getApplicable().isEmpty() || cev.getEnchantment().getApplicable().contains(item.getType().name())) && !hasCustomEnchantments(item, cev.getEnchantment().getConflicts()))
+		if((cev.getEnchantment().getApplicable() == null || cev.getEnchantment().getApplicable().isEmpty() || cev.getEnchantment().getApplicable().contains(item.getType().name())) && !hasCustomEnchantments(item, cev.getEnchantment().getCustomConflicts()) && !hasEnchantments(item, cev.getEnchantment().getConflicts()))
 		{
 			List<CustomEnchantmentValue> removeds = removeEnchantment(item, cev.getEnchantment());
 			CustomEnchantmentValue removed = (removeds == null || removeds.isEmpty()) ? null : removeds.get(0);
@@ -120,6 +121,22 @@ public class ItemEnchanter {
 			if(ench.contains(cev.getEnchantment()))
 				return true;
 		}
+		return false;
+	}
+	public static boolean hasEnchantments(ItemStack item, List<Enchantment> list)
+	{
+		if(item.hasItemMeta())
+		for(Enchantment e : list)
+			if(item.getItemMeta().hasEnchant(e))
+				return true;
+		return false;
+	}
+	public static boolean hasEnchantments(ItemStack item, Enchantment... list)
+	{
+		if(item.hasItemMeta())
+		for(Enchantment e : list)
+			if(item.getItemMeta().hasEnchant(e))
+				return true;
 		return false;
 	}
 	public static List<CustomEnchantmentValue> getEnchantments(ItemStack item)

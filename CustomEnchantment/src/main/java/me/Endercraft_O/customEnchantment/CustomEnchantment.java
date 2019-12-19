@@ -5,8 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 
 public class CustomEnchantment {
 
@@ -15,7 +18,8 @@ public class CustomEnchantment {
 	private Listener listener = null;
 	private boolean anvilable;
 	private List<String> applicable = new ArrayList<String>();
-	private List<CustomEnchantment> conflicts = new ArrayList<CustomEnchantment>();
+	private List<Enchantment> conflicts = new ArrayList<Enchantment>();
+	private List<CustomEnchantment> customConflicts = new ArrayList<CustomEnchantment>();
 	
 	public CustomEnchantment(String name, int max, String... app)
 	{
@@ -55,7 +59,15 @@ public class CustomEnchantment {
 	{
 		for(CustomEnchantment ce : ces)
 		{
-			conflicts.add(ce);
+			customConflicts.add(ce);
+		}
+	}
+	
+	public void addConflicts(Enchantment... es)
+	{
+		for(Enchantment e : es)
+		{
+			conflicts.add(e);
 		}
 	}
 	
@@ -64,7 +76,8 @@ public class CustomEnchantment {
 	public Listener getListener() {return listener;}
 	public boolean isAnvilable() {return anvilable;}
 	public List<String> getApplicable() {return applicable;}
-	public List<CustomEnchantment> getConflicts() {return conflicts;}
+	public List<Enchantment> getConflicts() {return conflicts;}
+	public List<CustomEnchantment> getCustomConflicts() {return customConflicts;}
 	
 	public static boolean addEnchamtment(CustomEnchantment enchant)
 	{
@@ -114,6 +127,13 @@ public class CustomEnchantment {
 			ret.add(ce.getName());
 		}
 		return ret;
+	}
+	
+	public ItemStack getBook(int lvl)
+	{
+		ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
+		ItemEnchanter.forceEnchant(book, new CustomEnchantmentValue(this, (short)lvl));
+		return book;
 	}
 	
 	@Override
